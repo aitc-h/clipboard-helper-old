@@ -1,3 +1,5 @@
+var data = [];
+
 // Function that makes the buttons copy themself to the clipboard
 function copy(e) {
     document.getElementById("clipboard-content").innerHTML = e.textContent;
@@ -8,20 +10,14 @@ function parse_parameter(param) {
     if (param === null) return [];
     var tmp = param.split('~');
     if (tmp.length < 2) return [];
-    var data = [];
 
     for (var i = 0; i < tmp.length; i += 2) {
         data.push([tmp[i], tmp[i + 1]])
     }
-
-    return data;
 }
 
-function go_to_data(data) {
-    // Go from '[["a","b"],["c","d"],["e","f"],["g","h"]]'
-    // To      'a,b,c,d,e,f,g,h'
-
-    var tmp = JSON.stringify(data);
+function go_to_data(new_data) {
+    var tmp = JSON.stringify(new_data);
     tmp = tmp.replaceAll('"', '');
     tmp = tmp.replaceAll('[', '');
     tmp = tmp.replaceAll(']', '');
@@ -29,7 +25,6 @@ function go_to_data(data) {
     console.log(tmp)
 
     document.location.href = '?data=' + encodeURIComponent(tmp);
-    // document.location.href = '?data=' + encodeURIComponent(JSON.stringify(data));
 }
 
 // Handler for adding new buttons to the bottom of the page
@@ -39,7 +34,10 @@ function add() {
         document.getElementById("number").value
     ]
     if (new_item[0] == '' && new_item[1] == '') return;
-    if (typeof data == 'undefined') go_to_data([new_item]);
+    if (typeof data == 'undefined') {
+        console.warn("Data is undefined - ignore if first item")
+        go_to_data([new_item]);
+    }
     go_to_data(data.concat([new_item]));
 }
 
@@ -82,7 +80,8 @@ function delete_row(i) {
 window.onload = () => {
     var params = new URLSearchParams(window.location.search);
 
-    var data = parse_parameter(params.get("data"));
+    parse_parameter(params.get("data"));
+    console.debug(data);
     data.forEach((button, index) => insert_button(index, button))
 
     var j = document.getElementById("name");
