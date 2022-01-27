@@ -82,7 +82,7 @@ function delete_row(i) {
 window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
-    var dark = params.get("dark") ? true : false;
+    var dark = params.get("dark") == 1 ? true : false;
 
     parse_data(params.get("data"));
     console.debug(data);
