@@ -20,7 +20,7 @@ function go_to_data(new_data) {
     // Go from '[["a","b"],["c","d"],["e","f"],["g","h"]]'
     // To      'a,b,c,d,e,f,g,h'
 
-    var tmp = JSON.stringify(concat(new_data));
+    var tmp = JSON.stringify(new_data);
     tmp = tmp.replaceAll('"', '');
     tmp = tmp.replaceAll('[', '');
     tmp = tmp.replaceAll(']', '');
