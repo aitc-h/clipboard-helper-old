@@ -17,9 +17,6 @@ function parse_parameter(param) {
 }
 
 function go_to_data(new_data) {
-    // Go from '[["a","b"],["c","d"],["e","f"],["g","h"]]'
-    // To      'a,b,c,d,e,f,g,h'
-
     var tmp = JSON.stringify(new_data);
     tmp = tmp.replaceAll('"', '');
     tmp = tmp.replaceAll('[', '');
@@ -28,7 +25,6 @@ function go_to_data(new_data) {
     console.log(tmp)
 
     document.location.href = '?data=' + encodeURIComponent(tmp);
-    // document.location.href = '?data=' + encodeURIComponent(JSON.stringify(data));
 }
 
 // Handler for adding new buttons to the bottom of the page
