@@ -1,4 +1,4 @@
-let data = [];
+var data = [];
 
 // Function that makes the buttons copy themself to the clipboard
 function copy(e) {
@@ -16,11 +16,11 @@ function parse_parameter(param) {
     }
 }
 
-function go_to_data(data) {
+function go_to_data(new_data) {
     // Go from '[["a","b"],["c","d"],["e","f"],["g","h"]]'
     // To      'a,b,c,d,e,f,g,h'
 
-    var tmp = JSON.stringify(data);
+    var tmp = JSON.stringify(concat(new_data));
     tmp = tmp.replaceAll('"', '');
     tmp = tmp.replaceAll('[', '');
     tmp = tmp.replaceAll(']', '');
