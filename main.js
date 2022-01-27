@@ -1,4 +1,4 @@
-const toggleSwitch;
+var toggleSwitch;
 
 var data = [];
 var params;
