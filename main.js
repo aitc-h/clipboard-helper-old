@@ -1,3 +1,5 @@
+const toggleSwitch;
+
 var data = [];
 var params;
 
@@ -79,10 +81,43 @@ function delete_row(i) {
     go_to_data(before.concat(after));
 }
 
+function getColorScheme() {
+    var theme = "light";
+    if (!window.matchMedia) {
+        return false;
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        theme = "dark";
+    }
+
+    if (theme == "dark") {
+        document.documentElement.setAttribute("data-theme", "dark")
+    }
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', "dark");
+        toggleSwitch.checked = true;
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        toggleSwitch.checked = false;
+    }
+}
+
+getColorScheme();
+
 window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
     var dark = params.get("dark") == 1 ? true : false;
+
+    toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
+
+    toggleSwitch.addEventListener('change', switchTheme, false);
+
+    if (document.documentElement.getAttribute("data-theme") == "dark") {
+        toggleSwitch.checked = true;
+    }
 
     parse_data(params.get("data"));
     console.debug(data);
