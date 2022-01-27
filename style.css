@@ -1,14 +1,17 @@
 :root {
     --link-color: #1C75B9;
-    --body-bg-color: #bdc1c6;
+    --link-white-color: #fff;
+    --body-bg-color: rgb(243,243,243);
     --body-color: #000;
     --footer-color: rgba(0,0,0,0.05);
     --delete-color: #f44;
 }
 
 [data-theme="dark"] {
-    --body-bg-color: #121212;
-    --body-color: #bdc1c6;
+    --link-color: #0A86da;
+    --link-white-color:#c1bfbd;
+    --body-bg-color: #333;
+    --body-color: #c1bfbd;
     --footer-color: rgba(256,256,256,0.05);
 }
 
@@ -23,6 +26,10 @@ body {
     margin-bottom: 60px;
 }
 
+a {
+    color: var(--link-color);
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -33,6 +40,5 @@ body {
 }
 
 button.delete {
-    display: none;
     background-color: var(--delete-color);
 }
