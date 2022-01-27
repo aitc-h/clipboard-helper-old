@@ -86,6 +86,7 @@ window.onload = () => {
     var params = new URLSearchParams(window.location.search);
 
     var data = parse_parameter(params.get("data"));
+    console.debug(data);
     data.forEach((button, index) => insert_button(index, button))
 
     var j = document.getElementById("name");
