@@ -1,3 +1,5 @@
+var data;
+
 // Function that makes the buttons copy themself to the clipboard
 function copy(e) {
     document.getElementById("clipboard-content").innerHTML = e.textContent;
