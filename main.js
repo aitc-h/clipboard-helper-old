@@ -7,8 +7,8 @@ function copy(e) {
     navigator.clipboard.writeText(e.textContent);
 }
 
-function parse_parameter() {
-    var tmp = param.get("data");
+function parse_data() {
+    var tmp = params.get("data");
     if (tmp === null) return [];
     tmp = tmp.split('~');
     if (tmp.length < 2) return [];
@@ -82,9 +82,11 @@ function delete_row(i) {
 window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
-    parse_parameter(params.get("data"));
+    var dark = params.get("dark") ? true : false;
+
+    parse_data(params.get("data"));
     console.debug(data);
-    data.forEach((button, index) => insert_button(index, button))
+    data.forEach((button, index) => insert_button(index, button));
 
     var j = document.getElementById("name");
     j.focus();
