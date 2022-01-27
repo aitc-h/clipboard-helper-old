@@ -39,7 +39,10 @@ function add() {
         document.getElementById("number").value
     ]
     if (new_item[0] == '' && new_item[1] == '') return;
-    if (typeof data == 'undefined') go_to_data([new_item]);
+    if (typeof data == 'undefined') {
+        console.warn("Data is undefined - ignore if first item")
+        go_to_data([new_item]);
+    }
     go_to_data(data.concat([new_item]));
 }
 
