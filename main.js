@@ -1,4 +1,4 @@
-var data;
+let data = [];
 
 // Function that makes the buttons copy themself to the clipboard
 function copy(e) {
@@ -10,13 +10,10 @@ function parse_parameter(param) {
     if (param === null) return [];
     var tmp = param.split('~');
     if (tmp.length < 2) return [];
-    var data = [];
 
     for (var i = 0; i < tmp.length; i += 2) {
         data.push([tmp[i], tmp[i + 1]])
     }
-
-    return data;
 }
 
 function go_to_data(data) {
@@ -87,7 +84,7 @@ function delete_row(i) {
 window.onload = () => {
     var params = new URLSearchParams(window.location.search);
 
-    var data = parse_parameter(params.get("data"));
+    parse_parameter(params.get("data"));
     console.debug(data);
     data.forEach((button, index) => insert_button(index, button))
 
