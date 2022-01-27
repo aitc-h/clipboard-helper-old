@@ -9,6 +9,7 @@ function parse_parameter(param) {
     var tmp = param.split('~');
     if (tmp.length < 2) return [];
     var data = [];
+
     for (var i = 0; i < tmp.length; i += 2) {
         data.push([tmp[i], tmp[i + 1]])
     }
@@ -38,7 +39,7 @@ function add() {
         document.getElementById("number").value
     ]
     if (new_item[0] == '' && new_item[1] == '') return;
-    if (data === null) go_to_data([new_item]); // Why do I need to check this again?
+    if (typeof data == 'undefined') go_to_data([new_item]);
     go_to_data(data.concat([new_item]));
 }
 
