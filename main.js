@@ -66,7 +66,7 @@ function add() {
 function insert_button(index, button_info) {
     var html = `<div id='button-${index}'>
                     <div class='d-inline' role='group'>
-                        <button class='btn btn-danger' tabindex='-1' onclick='delete_row(${index})' hidden>X</button>
+                        <button class='btn btn-danger' tabindex='-1' onclick='delete_row(${index})' ${state.edit ? '' : 'hidden'}>X</button>
                     </div>
                     <div class='d-inline' role='group'>
                         <button class='btn btn-dark col-5' onclick='copy(this)' tabindex='-1' ${button_info[0] == '' ? 'hidden' : ''}>${button_info[0]}</button>
