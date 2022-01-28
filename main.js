@@ -122,7 +122,7 @@ window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
     state.theme = params.get("dark") == 1 ? "dark" : "light";
-    state.edit = params.get("edit") == '1';
+    
     state.data = parse_data(params.get("data"))
 
     toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
@@ -134,6 +134,8 @@ window.onload = () => {
 
     console.debug(state.data);
     state.data.forEach((button, index) => insert_button(index, button));
+
+    state.edit = params.get("edit") == '1';
 
     var j = document.getElementById("name");
     j.focus();
