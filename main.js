@@ -1,3 +1,5 @@
+var toggleSwitch;
+
 var data = [];
 var params;
 
@@ -7,8 +9,8 @@ function copy(e) {
     navigator.clipboard.writeText(e.textContent);
 }
 
-function parse_parameter() {
-    var tmp = param.get("data");
+function parse_data() {
+    var tmp = params.get("data");
     if (tmp === null) return [];
     tmp = tmp.split('~');
     if (tmp.length < 2) return [];
@@ -79,12 +81,53 @@ function delete_row(i) {
     go_to_data(before.concat(after));
 }
 
+function getColorScheme() {
+    var theme = "light";
+    if (localStorage.getItem("theme")) {
+        if (localStorage.getItem("theme") == "dark") {
+            theme = dark;
+        }
+    } else if (!window.matchMedia) {
+        return false;
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        theme = "dark";
+    }
+
+    if (theme == "dark") {
+        document.documentElement.setAttribute("data-theme", "dark")
+    }
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        localStorage.setItem("theme", "dark");
+        document.documentElement.setAttribute('data-theme', "dark");
+        toggleSwitch.checked = true;
+    } else {
+        localStorage.setItem("theme", "light");
+        document.documentElement.setAttribute('data-theme', 'light');
+        toggleSwitch.checked = false;
+    }
+}
+
+getColorScheme();
+
 window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
-    parse_parameter(params.get("data"));
+    var dark = params.get("dark") == 1 ? true : false;
+
+    toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
+
+    toggleSwitch.addEventListener('change', switchTheme, false);
+
+    if (document.documentElement.getAttribute("data-theme") == "dark") {
+        toggleSwitch.checked = true;
+    }
+
+    parse_data(params.get("data"));
     console.debug(data);
-    data.forEach((button, index) => insert_button(index, button))
+    data.forEach((button, index) => insert_button(index, button));
 
     var j = document.getElementById("name");
     j.focus();
