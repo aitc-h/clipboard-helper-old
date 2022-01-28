@@ -123,7 +123,7 @@ window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
     state.theme = params.get("dark") == 1 ? "dark" : "light";
-    state.edit = params.get("edit") == 1 ? true : false;
+    state.edit = params.get("edit") == '1' ? true : false;
     state.data = parse_data(params.get("data"))
 
     toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
