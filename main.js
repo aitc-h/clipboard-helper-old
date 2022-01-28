@@ -3,7 +3,13 @@ var params;
 
 var state = {
     'theme': '',
-    'edit': false,
+    '__edit': false,
+    get edit() { return this.__edit; },
+    set edit(a) {
+        this.__edit = a;
+        var buttons = document.getElementsByClassName("btn-danger");
+        Array.from(buttons).forEach((e) => { e.hidden = !state.edit; });
+    },
     'data': []
 }
 
@@ -73,13 +79,6 @@ function insert_button(index, button_info) {
     buttons.innerHTML += html;
 }
 
-// Toggles the state edit mode and shows/hides the buttons
-function toggle_delete() {
-    // Starts at state.edit == 0 -> hidden
-    var buttons = document.getElementsByClassName("btn-danger");
-    Array.from(buttons).forEach((e) => { e.hidden = state.edit; });
-}
-
 function delete_row(i) {
     var before = state.data.slice(0, i);
     var after = state.data.slice(i + 1);
@@ -135,10 +134,6 @@ window.onload = () => {
 
     console.debug(state.data);
     state.data.forEach((button, index) => insert_button(index, button));
-
-    if (state.edit) {
-        toggle_delete();
-    }
 
     var j = document.getElementById("name");
     j.focus();
