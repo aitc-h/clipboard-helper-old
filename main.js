@@ -28,7 +28,11 @@ function go_to_data(new_data) {
     tmp = tmp.replaceAll(',', '~');
     console.log(tmp)
 
-    document.location.href = '?data=' + encodeURIComponent(tmp);
+    var n_params = new URLSearchParams();
+    n_params.setItem("data", encodeURIComponent(tmp))
+    n_params.setItem("edit", (toggleSwitch.checked ? 1 : 0).toString());
+
+    document.location.href = '?' + n_params.toString();
 }
 
 // Handler for adding new buttons to the bottom of the page
