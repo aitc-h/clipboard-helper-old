@@ -77,7 +77,7 @@ function insert_button(index, button_info) {
 function toggle_delete() {
     state.edit = !state.edit;
     var buttons = document.getElementsByClassName("btn-danger");
-    Array.from(buttons).forEach((e) => { e.hidden = state.edit; });
+    Array.from(buttons).forEach((e) => { e.hidden = !state.edit; });
 }
 
 function delete_row(i) {
