@@ -75,9 +75,9 @@ function insert_button(index, button_info) {
 
 // Toggles the state edit mode and shows/hides the buttons
 function toggle_delete() {
-    state.edit = !state.edit;
+    // Starts at state.edit == 0 -> hidden
     var buttons = document.getElementsByClassName("btn-danger");
-    Array.from(buttons).forEach((e) => { e.hidden = !state.edit; });
+    Array.from(buttons).forEach((e) => { e.hidden = state.edit; });
 }
 
 function delete_row(i) {
@@ -123,7 +123,7 @@ window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
     state.theme = params.get("dark") == 1 ? "dark" : "light";
-    state.edit = params.get("edit") == '1' ? true : false;
+    state.edit = params.get("edit") == '1';
     state.data = parse_data(params.get("data"))
 
     toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
