@@ -116,9 +116,9 @@ window.onload = () => {
     params = new URLSearchParams(window.location.search);
 
     var dark = params.get("dark") == 1 ? true : false;
+    var edit = params.get("edit") == 1 ? true : false;
 
     toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
-
     toggleSwitch.addEventListener('change', switchTheme, false);
 
     if (document.documentElement.getAttribute("data-theme") == "dark") {
@@ -128,6 +128,10 @@ window.onload = () => {
     parse_data(params.get("data"));
     console.debug(data);
     data.forEach((button, index) => insert_button(index, button));
+
+    if (edit) {
+        toggle_delete();
+    }
 
     var j = document.getElementById("name");
     j.focus();
