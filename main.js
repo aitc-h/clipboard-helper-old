@@ -85,7 +85,7 @@ function getColorScheme() {
     var theme = "light";
     if (localStorage.getItem("theme")) {
         if (localStorage.getItem("theme") == "dark") {
-            theme = dark;
+            theme = "dark";
         }
     } else if (!window.matchMedia) {
         return false;
