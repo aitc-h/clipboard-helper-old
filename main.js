@@ -33,10 +33,10 @@ function go_to_data(new_data) {
     tmp = tmp.replaceAll('[', '');
     tmp = tmp.replaceAll(']', '');
     tmp = tmp.replaceAll(',', '~');
-    console.debug(tmp)
+    console.debug(tmp);
 
     var n_params = new URLSearchParams();
-    n_params.set("data", encodeURIComponent(tmp))
+    n_params.set("data", tmp);
     n_params.set("edit", (state.edit ? '1' : '0'));
 
     document.location.href = '?' + n_params.toString();
@@ -63,8 +63,8 @@ function insert_button(index, button_info) {
                         <button class='btn btn-danger' tabindex='-1' onclick='delete_row(${index})' hidden>X</button>
                     </div>
                     <div class='d-inline' role='group'>
-                        <button class='btn btn-dark col-5' onclick='copy(this)' tabindex='-1' ${button_info[0] == '' ? '' : 'hidden'}>${button_info[0]}</button>
-                        <button class='btn btn-dark col-5' onclick='copy(this)' tabindex='-1' ${button_info[1] == '' ? '' : 'hidden'}>${button_info[1]}</button>
+                        <button class='btn btn-dark col-5' onclick='copy(this)' tabindex='-1' ${button_info[0] == '' ? 'hidden' : ''}>${button_info[0]}</button>
+                        <button class='btn btn-dark col-5' onclick='copy(this)' tabindex='-1' ${button_info[1] == '' ? 'hidden' : ''}>${button_info[1]}</button>
                     </div>
                 </div>
                 `
