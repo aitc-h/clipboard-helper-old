@@ -135,8 +135,6 @@ window.onload = () => {
     console.debug(state.data);
     state.data.forEach((button, index) => insert_button(index, button));
 
-    
-
     var j = document.getElementById("name");
     j.focus();
     j.select();
